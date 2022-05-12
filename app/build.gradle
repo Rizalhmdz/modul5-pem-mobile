@@ -38,6 +38,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -52,6 +53,7 @@ dependencies {
 
     def lifecycle_version = "2.5.0-beta01"
     def arch_version = "2.1.0"
+
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -116,4 +118,5 @@ dependencies {
     def fragment_version = "1.4.1"
 
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
 }
