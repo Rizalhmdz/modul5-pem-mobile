@@ -4,7 +4,6 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
 import retrofit2.http.GET
 
 
@@ -20,12 +19,13 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
+
 interface BookApiService {
     @GET("volumes?q=Mythology&key=$API_KEY")
-    suspend fun getListBook() : List<Book>
+    suspend fun getListBook(): ResponseData
 }
 
-object BookApi{
+object BookApi {
     val retrofitService: BookApiService by lazy {
         retrofit.create(BookApiService::class.java)
     }

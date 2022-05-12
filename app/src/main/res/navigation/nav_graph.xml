@@ -8,6 +8,21 @@
     <fragment
         android:id="@+id/bookListFragment"
         android:name="com.example.modul5.ui.BookListFragment"
-        android:label="fragment_book_list"
-        tools:layout="@layout/fragment_book_list" />
+        android:label="Book List"
+        tools:layout="@layout/fragment_book_list" >
+        <action
+            android:id="@+id/action_bookListFragment_to_bookDetailFragment"
+            app:destination="@id/bookDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookDetailFragment"
+        android:name="com.example.modul5.ui.BookDetailFragment"
+        android:label="Book Detail"
+        tools:layout="@layout/fragment_book_detail" >
+        <action
+            android:id="@+id/action_bookDetailFragment_to_bookListFragment2"
+            app:destination="@id/bookListFragment"
+            app:popUpTo="@id/bookListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

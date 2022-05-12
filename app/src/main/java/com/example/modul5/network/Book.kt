@@ -1,10 +1,28 @@
 package com.example.modul5.network
 
-data class Book (
-    val title: String,
+import com.squareup.moshi.Json
+
+data class ResponseData(
+    val kind: String = "",
+    val totalItems: Int = 0,
+    val items: List<Items>
+)
+
+data class Items(
+    @Json(name = "volumeInfo")
+    val bookItems: BookItem
+)
+
+data class BookItem(
+    @Json(name = "imageLinks")
+    val cover: ImageLinks,
+    val title: String = "",
     val authors: List<String>,
-    val publisher: String,
-    val publishDate: String,
-    val description: String,
-    val pageCount: Int
-    )
+    val publisher: String = "",
+    val publishedDate: String = "",
+    val description: String = ""
+)
+
+data class ImageLinks(
+    val thumbnail: String
+)

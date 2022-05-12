@@ -6,30 +6,40 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.modul5.databinding.ItemViewLayoutBinding
-import com.example.modul5.network.Book
+import com.example.modul5.network.Items
 
-class ListBookAdapter(val clickListener: BookListener) :
-    ListAdapter<Book, ListBookAdapter.BookViewHolder>(DiffCallback) {
+class ListBookAdapter(
+    private val clickListener: BookListener
+) :
+    ListAdapter<Items, ListBookAdapter.BookViewHolder>(DiffCallback) {
 
     class BookViewHolder(
         var binding: ItemViewLayoutBinding
-    ) : RecyclerView.ViewHolder(binding.root){
-        fun bind(clickListener: BookListener, book: Book) {
-            binding.book = book
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(
+            clickListener: BookListener,
+            book: Items
+        ) {
+            binding.bookItem = book
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<Book>() {
+    companion object DiffCallback : DiffUtil.ItemCallback<Items>() {
 
-        override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
-            return oldItem.title == newItem.title
+        override fun areItemsTheSame(oldItem: Items, newItem: Items): Boolean {
+            return oldItem.bookItems.title == newItem.bookItems.title
         }
 
-        override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
-            return oldItem.publishDate == newItem.publishDate && oldItem.description == newItem.description
+        override fun areContentsTheSame(oldItem: Items, newItem: Items): Boolean {
+            return oldItem.bookItems.cover == newItem.bookItems.cover
+                    && oldItem.bookItems.authors == newItem.bookItems.authors
+                    && oldItem.bookItems.publisher == newItem.bookItems.publisher
+                    && oldItem.bookItems.publishedDate == newItem.bookItems.publishedDate
+                    && oldItem.bookItems.description == newItem.bookItems.description
         }
+
 
     }
 
@@ -42,10 +52,10 @@ class ListBookAdapter(val clickListener: BookListener) :
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val book = getItem(position)
-        holder.bind( clickListener, book)
+        holder.bind(clickListener, book)
     }
 }
 
-class BookListener(val clickListener: (book: Book) -> Unit) {
-    fun onClick(book: Book) = clickListener(book)
+class BookListener(val clickListener: (book: Items) -> Unit) {
+    fun onClick(book: Items) = clickListener(book)
 }
