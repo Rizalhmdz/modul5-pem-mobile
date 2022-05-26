@@ -7,7 +7,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
 
-private const val BASE_URL = "https://www.googleapis.com/books/v1/"
+private const val BASE_URL = "https://makeup-api.herokuapp.com/api/v1/"
 private const val API_KEY = "AIzaSyCEaxYLA7X0ESATY2wLAfu7AdLLp7Dsp7o"
 
 private val moshi = Moshi.Builder()
@@ -21,8 +21,8 @@ private val retrofit = Retrofit.Builder()
 
 
 interface BookApiService {
-    @GET("volumes?q=Mythology&key=$API_KEY")
-    suspend fun getListBook(): ResponseData
+    @GET("products.json")
+    suspend fun getListBook(): List<BookItem>
 }
 
 object BookApi {

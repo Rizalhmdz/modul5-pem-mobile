@@ -7,10 +7,11 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.modul5.R
+import com.example.modul5.network.BookItem
 import com.example.modul5.network.Items
 
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Items>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<BookItem>?) {
     val adapter = recyclerView.adapter as ListBookAdapter
     adapter.submitList(data)
 }
